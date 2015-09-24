@@ -90,7 +90,7 @@ export default Ember.Component.extend({
         // if (confirm("Delete connection from " + conn.sourceId + " to " + conn.targetId + "?"))
         //   instance.detach(conn);
         conn.toggleType("basic");
-      });
+      }.bind(this));
 
       // Render lines
       this.get('model.steps').forEach(function (step) {
@@ -120,6 +120,11 @@ export default Ember.Component.extend({
       var step = Step.create({name: Ember.uuid() + '', type: stepType, title: stepType});
       step.setProperties({top: parseInt(Math.random() * 100), left: 100});
       this.get('model.steps').pushObject(step);
+    },
+
+    delete: function (step) {
+      this.jsPlumbInstance.removeAllEndpoints(this.$().find('#' + step.name));
+      this.get('model.steps').removeObject(step);
     }
   }
 });

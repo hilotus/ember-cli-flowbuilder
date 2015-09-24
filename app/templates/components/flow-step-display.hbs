@@ -1,1 +1,4 @@
-{{model.title}}
+<span class="step-title">{{model.title}}</span>
+{{#unless isStartOrEnd}}
+  <i role="button" class="fa fa-minus-circle del" {{action 'delete' model target=targetObject}}></i>
+{{/unless}}

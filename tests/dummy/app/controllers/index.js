@@ -4,7 +4,6 @@ export default Ember.Controller.extend({
   init() {
     this._super();
     var Flow = this.container.lookupFactory('flow-model:main');
-    // this.set('model', Flow.create({name: 'My flow', description: 'My flow description', steps: []}));
 
     var flow = Flow.create();
     flow.initFromJson(

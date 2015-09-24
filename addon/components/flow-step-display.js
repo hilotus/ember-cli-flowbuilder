@@ -1,4 +1,5 @@
 import Ember from 'ember';
+import ModelTypeMixin from 'ember-cli-flowbuilder/mixins/model-type';
 
 // this is the paint style for the connecting lines..
 var connectorPaintStyle = {
@@ -51,7 +52,7 @@ var connectorPaintStyle = {
     ]
   };
 
-export default Ember.Component.extend({
+export default Ember.Component.extend(ModelTypeMixin, {
   classNameBindings: [':flow-builder-step', 'typeClass', 'isSelected:selected'],
   attributeBindings: ['style'],
 
