@@ -64,21 +64,51 @@ export default Ember.Component.extend({
   }),
 
   model: null,  // step model
+  targetObject: null,  // form builder component
 
   jsPlumbInstance: null,
+
+  isSelected: Ember.computed('model.name', 'targetObject.step.name', function () {
+    return Ember.isEqual(this.get('model.name'), this.get('targetObject.step.name'));
+  }),
 
   didInsertElement: function () {
     Ember.run.schedule('afterRender', this, function () {
       this.$().attr('id', this.get('model.name'));
-      this.jsPlumbInstance.draggable(this.$(), { grid: [20, 20] });
 
+      this.$().bind('click tap', function () {
+        this.set('targetObject.step', this.get('model'));
+      }.bind(this));
+
+      this.jsPlumbInstance.draggable(this.$(), {
+        grid: [20, 20],
+        stop: function (event) {
+          // event.pos [left, top]
+          this.set('model.top', event.pos[1]);
+          this.set('model.left', event.pos[0]);
+        }.bind(this)
+      });
+
+      var inPoint = this.get('model.inPoint'),
+        outPoint = this.get('model.outPoint');
+
+      if (!inPoint) {
+        inPoint = this.get('model.name') + 'TopCenter';
+        this.set('model.inPoint', inPoint);
+      }
+      if (!outPoint) {
+        outPoint = this.get('model.name') + 'BottomCenter';
+        this.set('model.outPoint', outPoint);
+      }
+
+      // Generate endpoints
       if (this.get('model.type') === 'start') {
-        this.jsPlumbInstance.addEndpoint(this.$().attr('id'), { anchor: 'BottomCenter' }, sourceEndpoint);
+        this.jsPlumbInstance.addEndpoint(this.$().attr('id'), {anchor: 'BottomCenter', uuid: outPoint}, sourceEndpoint);
       } else if (this.get('model.type') === 'end') {
-        this.jsPlumbInstance.addEndpoint(this.$().attr('id'), { anchor: 'TopCenter' }, targetEndpoint);
+        this.jsPlumbInstance.addEndpoint(this.$().attr('id'), {anchor: 'TopCenter', uuid: inPoint}, targetEndpoint);
       } else {
-        this.jsPlumbInstance.addEndpoint(this.$().attr('id'), { anchor: 'TopCenter' }, targetEndpoint);
-        this.jsPlumbInstance.addEndpoint(this.$().attr('id'), { anchor: 'BottomCenter' }, sourceEndpoint);
+        this.jsPlumbInstance.addEndpoint(this.$().attr('id'), {anchor: 'TopCenter', uuid: inPoint}, targetEndpoint);
+        this.jsPlumbInstance.addEndpoint(this.$().attr('id'), {anchor: 'BottomCenter', uuid: outPoint}, sourceEndpoint);
       }
     });
   }
