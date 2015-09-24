@@ -1,0 +1,41 @@
+<div class="flow-builder-left">
+  <ul class="flow-builder-tabs">
+    <li class="{{if isEditFlowTag 'active'}}"><a {{action 'toggleTag' 'editFlow'}}>Edit Flow</a></li>
+    <li class="{{if isAddStepTag 'active'}}"><a {{action 'toggleTag' 'addStep'}}>Add Step</a></li>
+    <li class="{{if isEditStepTag 'active'}}"><a {{action 'toggleTag' 'editStep'}}>Edit Step</a></li>
+  </ul>
+  <div class="flow-builder-tab-content">
+    <div class="flow-builder-tab-pane {{if isEditFlowTag 'active'}}">
+      <div class="form-group">
+        {{input class="form-control" value=model.name}}
+      </div>
+      <div class="form-group">
+        {{textarea class="form-control" value=model.description}}
+      </div>
+    </div>
+
+    <div class="flow-builder-tab-pane {{if isAddStepTag 'active'}}">
+      <div class="flow-builder-add-field-types">
+        <div class="section">
+          <a role="button" class="btn btn-default" {{action 'addStep' 'start'}}>Start</a>
+          <a role="button" class="btn btn-default" {{action 'addStep' 'end'}}>End</a>
+          <a role="button" class="btn btn-default" {{action 'addStep' 'process'}}>Process</a>
+          <a role="button" class="btn btn-default" {{action 'addStep' 'condition'}}>Condition</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="flow-builder-tab-pane {{if isEditStepTag 'active'}}">
+      asd
+    </div>
+
+  </div>
+</div>
+
+<div class="flow-builder-right flow-builder-board">
+  {{#each model.steps as |step|}}
+    {{flow-step-display model=step jsPlumbInstance=jsPlumbInstance}}
+  {{/each}}
+</div>
+
+<div class="flow-builder-clear"></div>
