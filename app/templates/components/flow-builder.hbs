@@ -1,8 +1,8 @@
 <div class="flow-builder-left">
   <ul class="flow-builder-tabs">
-    <li class="{{if isEditFlowTag 'active'}}"><a {{action 'toggleTag' 'editFlow'}}>Edit Flow</a></li>
-    <li class="{{if isAddStepTag 'active'}}"><a {{action 'toggleTag' 'addStep'}}>Add Step</a></li>
-    <li class="{{if isEditStepTag 'active'}}"><a {{action 'toggleTag' 'editStep'}}>Edit Step</a></li>
+    <li class="{{if isEditFlowTag 'active'}}"><a {{action 'toggleTag' 'editFlow'}}>{{flow-t 'tab.editFlow'}}</a></li>
+    <li class="{{if isAddStepTag 'active'}}"><a {{action 'toggleTag' 'addStep'}}>{{flow-t 'tab.addStep'}}</a></li>
+    <li class="{{if isEditStepTag 'active'}}"><a {{action 'toggleTag' 'editStep'}}>{{flow-t 'tab.editStep'}}</a></li>
   </ul>
   <div class="flow-builder-tab-content">
     <div class="flow-builder-tab-pane {{if isEditFlowTag 'active'}}">
@@ -17,10 +17,10 @@
     <div class="flow-builder-tab-pane {{if isAddStepTag 'active'}}">
       <div class="flow-builder-add-field-types">
         <div class="section">
-          <a role="button" class="btn btn-primary" {{action 'addStep' 'start'}}>Start</a>
-          <a role="button" class="btn btn-default" {{action 'addStep' 'process'}}>Process</a>
-          <a role="button" class="btn btn-default" {{action 'addStep' 'condition'}}>Condition</a>
-          <a role="button" class="btn btn-primary" {{action 'addStep' 'end'}}>End</a>
+          <a role="button" class="btn btn-primary" {{action 'addStep' 'start'}}>{{flow-t 'addStep.start'}}</a>
+          <a role="button" class="btn btn-default" {{action 'addStep' 'process'}}>{{flow-t 'addStep.process'}}</a>
+          <a role="button" class="btn btn-default" {{action 'addStep' 'condition'}}>{{flow-t 'addStep.condition'}}</a>
+          <a role="button" class="btn btn-primary" {{action 'addStep' 'end'}}>{{flow-t 'addStep.end'}}</a>
         </div>
       </div>
     </div>

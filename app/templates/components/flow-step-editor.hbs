@@ -1,19 +1,19 @@
 <div class="flow-builder-step-label">
-  <code class="step-name">{{model.name}}</code>
-  <code class="step-type">{{model.type}}</code>
+  <code class="step-name" date-field="{{flow-t 'editStep.fieldName'}}"> {{model.name}}</code>
+  <code class="step-type" date-field="{{flow-t 'editStep.fieldType'}}"> {{model.type}}</code>
 </div>
 
-<div class="flow-builder-edit-section-header">Label</div>
+<div class="flow-builder-edit-section-header">{{flow-t 'editStep.ops.label'}}</div>
 <div class="form-group">
-  {{input class="form-control" value=model.title placeholder='Title'}}
+  {{input class="form-control" value=model.title placeholder=(flow-t 'editStep.ops.title')}}
 </div>
 <div class="form-group">
-  {{textarea class="form-control" value=model.description placeholder='Description'}}
+  {{textarea class="form-control" value=model.description placeholder=(flow-t 'editStep.ops.desp')}}
 </div>
 
 {{#if isCondition}}
   <div class="flow-builder-edit-section-header">Conditions</div>
   <div class="form-group">
-    {{textarea class="form-control" value=model.condition placeholder='Condition'}}
+    {{textarea class="form-control" value=model.condition placeholder=(flow-t 'editStep.ops.condition')}}
   </div>
 {{/if}}
