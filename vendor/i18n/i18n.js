@@ -13,8 +13,8 @@
         condition: 'Condition'
       },
       editStep: {
-        fieldName: 'Name',
-        fieldType: 'Type',
+        stepName: 'Name',
+        stepType: 'Type',
         ops: {
           label: 'Property',
           title: 'Title',
@@ -37,8 +37,8 @@
         condition: '条件'
       },
       editStep: {
-        fieldName: '名称',
-        fieldType: '类型',
+        stepName: '名称',
+        stepType: '类型',
         ops: {
           label: '属性',
           title: '标题',
